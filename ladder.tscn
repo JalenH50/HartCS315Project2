@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=4 uid="uid://c1mpdx8h6ybid"]
+
+[ext_resource type="Texture2D" uid="uid://brxl507phfjks" path="res://prototyping_assets/item/tile_0071.png" id="1_sqvqn"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wh44h"]
+resource_name = "ladder"
+texture = ExtResource("1_sqvqn")
+texture_region_size = Vector2i(18, 18)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_f8v06"]
+sources/0 = SubResource("TileSetAtlasSource_wh44h")
+
+[sub_resource type="GDScript" id="GDScript_k1avq"]
+script/source = "extends TileMapLayer
+
+
+
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v74k8"]
+size = Vector2(18, 168)
+
+[node name="Ladder" type="TileMapLayer" groups=["climbable"]]
+show_behind_parent = true
+light_mask = 2
+visibility_layer = 2
+tile_map_data = PackedByteArray("AAAAAP//AAAAAAAAAAAAAP7/AAAAAAAAAAAAAP3/AAAAAAAAAAAAAPz/AAAAAAAAAAAAAPv/AAAAAAAAAAAAAPr/AAAAAAAAAAAAAPn/AAAAAAAAAAAAAPj/AAAAAAAAAAAAAPf/AAAAAAAAAAAAAPb/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_f8v06")
+rendering_quadrant_size = 18
+script = SubResource("GDScript_k1avq")
+
+[node name="LadderArea" type="Area2D" parent="." groups=["climbable"]]
+
+[node name="LadderCollision" type="CollisionShape2D" parent="LadderArea"]
+position = Vector2(8, -82)
+shape = SubResource("RectangleShape2D_v74k8")
+
+[connection signal="body_entered" from="LadderArea" to="." method="_on_ladder_area_body_entered"]

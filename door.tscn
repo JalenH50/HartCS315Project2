@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://chlv83nfclrjb"]
+
+[ext_resource type="Texture2D" uid="uid://c18je85gy3kvm" path="res://prototyping_assets/item/tile_0028.png" id="2_jpoix"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sdrqv"]
+size = Vector2(46, 71)
+
+[node name="Door" type="StaticBody2D"]
+disable_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_sdrqv")
+one_way_collision_margin = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.66667, 4.05555)
+texture = ExtResource("2_jpoix")

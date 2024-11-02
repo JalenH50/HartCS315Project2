@@ -1,0 +1,135 @@
+[gd_scene load_steps=10 format=3 uid="uid://b0pm55gsmad6r"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_sktk2"]
+[ext_resource type="FontFile" uid="uid://cu10xkkd1hy0p" path="res://prototyping_assets/Fonts/8-bit-hud.ttf" id="2_h6tt4"]
+[ext_resource type="AudioStream" uid="uid://ctibxsrfi6yvf" path="res://prototyping_assets/Sounds/mixkit-uplifting-flute-2314.wav" id="3_rii2e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v72fk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kc0gd"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lnedy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ep04m"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smoas"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_awgig"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="Menu" type="Node2D"]
+position = Vector2(576, 350)
+script = ExtResource("1_sktk2")
+
+[node name="LevelButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -30.0
+offset_right = 60.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_v72fk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kc0gd")
+text = "Level Select"
+
+[node name="Title" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -523.0
+offset_top = -264.0
+offset_right = 523.0
+offset_bottom = -162.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0.768627, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = -5
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 24
+theme_override_fonts/font = ExtResource("2_h6tt4")
+theme_override_font_sizes/font_size = 48
+text = "Bat Builder Bonanza"
+horizontal_alignment = 1
+
+[node name="Button1" type="Button" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -30.0
+offset_right = -60.0
+offset_bottom = 30.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_lnedy")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ep04m")
+text = "Level 1"
+
+[node name="Button2" type="Button" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 60.0
+offset_top = -30.0
+offset_right = 180.0
+offset_bottom = 30.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_smoas")
+theme_override_styles/normal = SubResource("StyleBoxFlat_awgig")
+text = "Level 2"
+
+[node name="ChooseALevel" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -503.0
+offset_top = -241.0
+offset_right = 543.0
+offset_bottom = -139.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0.768627, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = -5
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 24
+theme_override_fonts/font = ExtResource("2_h6tt4")
+theme_override_font_sizes/font_size = 48
+text = "Choose A Level"
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="ChooseALevel"]
+wait_time = 0.1
+
+[node name="MenuPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_rii2e")
+autoplay = true
+
+[connection signal="pressed" from="LevelButton" to="." method="_on_level_select_button_pressed"]
+[connection signal="pressed" from="Button1" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="timeout" from="ChooseALevel/Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://ltacid7okkb6"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_eq0vu"]
+[ext_resource type="Texture2D" uid="uid://v0r47pdln5vu" path="res://prototyping_assets/kenney_platformer-art-extended-enemies/Alien sprites/alienGreen_climb1.png" id="2_01qei"]
+[ext_resource type="Texture2D" uid="uid://c2dr0877quapo" path="res://prototyping_assets/kenney_platformer-art-extended-enemies/Alien sprites/alienGreen_climb2.png" id="3_eshse"]
+[ext_resource type="Texture2D" uid="uid://bstk1p7oipqa5" path="res://prototyping_assets/kenney_platformer-art-extended-enemies/Alien sprites/alienGreen.png" id="4_w7q8u"]
+[ext_resource type="Texture2D" uid="uid://b37gq587at246" path="res://prototyping_assets/kenney_platformer-art-extended-enemies/Alien sprites/alienGreen_walk1.png" id="5_2mn11"]
+[ext_resource type="Texture2D" uid="uid://0apaqfbsm4w1" path="res://prototyping_assets/kenney_platformer-art-extended-enemies/Alien sprites/alienGreen_walk2.png" id="6_tbuqs"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w5kr0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_01qei")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_eshse")
+}],
+"loop": true,
+"name": &"climb",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_w7q8u")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_2mn11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_tbuqs")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wgip8"]
+size = Vector2(18, 18)
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_eq0vu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8.58307e-06)
+scale = Vector2(0.264706, 0.193548)
+sprite_frames = SubResource("SpriteFrames_w5kr0")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wgip8")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.75, 2)
+limit_left = 0
+limit_top = 0
+limit_right = 1150
+limit_bottom = 652
+limit_smoothed = true
+position_smoothing_enabled = true
